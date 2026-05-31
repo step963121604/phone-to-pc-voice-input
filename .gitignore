@@ -17,3 +17,5 @@ android/app/*.iml
 
 .DS_Store
 Thumbs.db
+
+PROJECT_PROMPT.md
