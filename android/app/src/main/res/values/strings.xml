@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">发PC</string>
+    <string name="settings_title">连接设置</string>
+    <string name="hint_text">用系统语音键盘听写，改好后点发送</string>
+    <string name="send">发送到电脑</string>
+    <string name="clear">清空</string>
+    <string name="status_disconnected">未连接</string>
+    <string name="status_connecting">连接中…</string>
+    <string name="status_connected">已连接</string>
+    <string name="status_sending">发送中…</string>
+    <string name="host_hint">PC 局域网 IP，如 192.168.1.4</string>
+    <string name="port_hint">端口，默认 8787</string>
+    <string name="token_hint">6 位配对码（PC 托盘显示）</string>
+    <string name="save">保存</string>
+    <string name="setup_required">请先配置 PC 地址与配对码</string>
+</resources>

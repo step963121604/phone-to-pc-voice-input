@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#3b82f6" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="发PC" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="/icon.png" />
+  <link rel="icon" href="/icon.png" />
+  <title>发送到电脑</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --accent: #3b82f6;
+      --accent-pressed: #2563eb;
+      --danger: #ef4444;
+      --ok: #22c55e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      padding: 12px;
+      gap: 12px;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+    #status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--danger);
+      flex-shrink: 0;
+    }
+    #status-dot.connected { background: var(--ok); }
+    #status-text { color: var(--muted); }
+    main { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+    textarea {
+      flex: 1;
+      width: 100%;
+      min-height: 200px;
+      resize: none;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 18px;
+      line-height: 1.5;
+      background: var(--card);
+      color: var(--text);
+    }
+    textarea:focus { outline: 2px solid var(--accent); outline-offset: 0; }
+    footer {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 10px;
+    }
+    button {
+      border: none;
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    #clear-btn {
+      background: #334155;
+      color: var(--text);
+    }
+    #send-btn {
+      background: var(--accent);
+      color: #fff;
+    }
+    #send-btn:active:not(:disabled) { background: var(--accent-pressed); }
+    #send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .options {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .options input { width: 18px; height: 18px; accent-color: var(--accent); }
+    .hint {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+    }
+    details.guide {
+      font-size: 12px;
+      color: var(--muted);
+      background: var(--card);
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+    details.guide summary {
+      cursor: pointer;
+      color: var(--text);
+      font-weight: 600;
+    }
+    details.guide ol { margin: 8px 0 0; padding-left: 18px; }
+    details.guide li { margin: 4px 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <span id="status-dot"></span>
+    <span id="status-text">连接中…</span>
+  </header>
+  <main>
+    <textarea
+      id="text"
+      placeholder="用系统语音听写；智能改写会反复改字，建议听完后点「发送到电脑」"
+      autocomplete="off"
+      autocorrect="on"
+      spellcheck="true"
+    ></textarea>
+  </main>
+  <label class="options">
+    <input type="checkbox" id="auto-send" />
+    <span>停顿后自动发送（2～3.5 秒，语音智能改写时易误触）</span>
+  </label>
+  <footer>
+    <button type="button" id="clear-btn">清空</button>
+    <button type="button" id="send-btn" disabled>发送到电脑 ▶</button>
+  </footer>
+  <p class="hint">请先在 PC 上点开要输入的位置，再发送</p>
+  <details class="guide">
+    <summary>省内存：用主屏幕图标，不要每次开 Chrome</summary>
+    <ol>
+      <li><strong>务必「添加到主屏幕」</strong>，以后点桌面 <strong>发PC</strong>：独立轻窗口，不占 Chrome 多标签内存</li>
+      <li><strong>不要</strong>每次从 Chrome 地址栏进；那等于整浏览器都开着</li>
+      <li><strong>iPhone：</strong>Safari 打开 → 分享 → 添加到主屏幕</li>
+      <li><strong>Android：</strong>Chrome → ⋮ → 添加到主屏幕 / 安装应用</li>
+      <li>用完可划掉；切到别的 App 时会自动断开 Wi-Fi（省电），回来再连</li>
+      <li>PC 托盘「手机扫码页」仅首次需要</li>
+    </ol>
+  </details>
+  <script src="/app.js"></script>
+</body>
+</html>
